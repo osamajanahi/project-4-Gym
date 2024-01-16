@@ -31,6 +31,7 @@ const classRouter = require('./routes/class');
 const receiptRouter = require('./routes/receipt');
 const categoryRouter = require('./routes/category');
 const facilitiesRouter = require('./routes/facilities');
+const authRouter = require('./routes/auth');
 //------- Mount routes -------//
 // Your code goes here
 
@@ -39,6 +40,7 @@ app.use("/class", classRouter);
 app.use("/receipt", receiptRouter);
 app.use("/category", categoryRouter);
 app.use("/facilities", facilitiesRouter);
+app.use('/auth', authRouter);
 
 
 //-------------------------//

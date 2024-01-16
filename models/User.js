@@ -19,12 +19,12 @@ const userSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        required: true
+        // required: true
     }
 },{
     timestamps: true
 });
 
-const User = mongoose.model("Uaer", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = {User};    
