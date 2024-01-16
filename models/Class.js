@@ -5,24 +5,24 @@ const classSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    duraion: {
+    duration: {
         type: String,
-        required: trye
+        required: true
     },
     price: {
         type: Number,
         required: true
     },
-    Category: [{
+    Category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
-    }],
+    },
     description: {
         type: String,
         required: true
     },
     image: {
-        type: String
+        type: [String]
     }
 },{
     timestamps: true
