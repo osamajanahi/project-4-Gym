@@ -9,6 +9,8 @@ const receiptSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Class'
     },
+    startDate: Date,
+    endDate: Date,
     image: String
 },{
     timestamps: true
