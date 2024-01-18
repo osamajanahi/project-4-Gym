@@ -5,6 +5,7 @@ const fs = require("fs");
 const uploadCloudinary = require('../config/cloudinaryConfig');
 
 exports.class_add_post = async (req, res) =>{
+    console.log(req)
     let newClass = new Class(req.body);
     let images;
     // console.log(req)
@@ -72,7 +73,9 @@ exports.class_edit_get = (req, res) =>{
 }
 
 exports.class_edit_post = (req, res) =>{
-    Class.findByIdAndUpdate(req.body.id, req.body, { new: true })
+    console.log(req.body)
+    
+    Class.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .then(updateClass =>{
         res.json(updateClass);
     })
@@ -82,7 +85,8 @@ exports.class_edit_post = (req, res) =>{
 }
 
 exports.class_delete_post = (req, res) =>{
-    Class.findByIdAndDelete(req.query.id)
+    console.log(req.body._id)
+    Class.findByIdAndDelete(req.body._id)
     .then(deletedClass =>{
         res.json(deletedClass);
     })
@@ -92,6 +96,7 @@ exports.class_delete_post = (req, res) =>{
 }
 
 exports.enroll_user_post = (req, res) =>{
+    console.log(req.query)
     Class.findById({_id: req.query.class})
     .then(thisClass =>{
         thisClass.user.push(req.query.user);
