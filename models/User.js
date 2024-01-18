@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    class: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Class'
+    }],
     type: {
         type: String,
         // required: true
