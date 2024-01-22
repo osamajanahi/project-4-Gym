@@ -72,9 +72,62 @@ exports.class_edit_get = (req, res) =>{
     })
 }
 
-exports.class_edit_post = (req, res) =>{
-    console.log(req.body)
+exports.class_edit_post = async (req, res) =>{
+    // console.log(req)
+    // console.log(req.files)
+    if(req.files && req.files.length != 0){
+        let images;
+        let pathDb = [];
+        images = req.files.map(file => `public/images/${file.filename}`);
+        await uploadCloudinary.upload_multiple(images)
+        .then((imagesPath) =>{
+            imagesPath.forEach(pathImg =>{
+                console.log(pathImg.url)
+                pathDb.push(pathImg.url);
+            })
+            images.forEach(remove =>{
+                // To remove the image from public/images and store it in cloudinary only
+                fs.unlink(remove, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log('File is deleted.');
+                    }
+                    });    
+            })
+            const body = req.body;
+            // console.log(pathDb);
+            body.image = pathDb;
+            console.log(body)
+            Class.findByIdAndUpdate(req.body._id, body, {new: true})
+            .then((newClass) => {
+                console.log("new")
+                console.log(newClass)
+                res.json(newClass);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send('Internal Server Error');
+            });
+        })
+        .catch((err) =>{
+            console.log(err);
+        })    
     
+    }
+    else{
+        console.log('not image')
+        Class.findByIdAndUpdate(req.body._id, req.body, {new: true})
+        .then((newCLass) => {
+            console.log(newCLass)
+            res.json(newCLass);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        } 
+
+
     Class.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .then(updateClass =>{
         res.json(updateClass);
