@@ -10,8 +10,7 @@ const receiptSchema = mongoose.Schema({
         ref: 'Class'
     },
     startDate: Date,
-    endDate: Date,
-    image: String
+    endDate: Date
 },{
     timestamps: true
 });

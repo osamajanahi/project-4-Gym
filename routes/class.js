@@ -12,7 +12,7 @@ router.use(express.json());
 router.post('/add', upload.array('image',5), classCtrl.class_add_post);
 router.get('/', classCtrl.class_index_get);
 router.get('/edit', classCtrl.class_edit_get);
-router.post('/edit', classCtrl.class_edit_post);
+router.post('/edit', upload.array('image',5), classCtrl.class_edit_post);
 router.post('/delete', classCtrl.class_delete_post);
 router.get('/enroll', classCtrl.enroll_user_post);
 router.get('/users', classCtrl.class_users_get);

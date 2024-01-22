@@ -1,6 +1,7 @@
 const {Receipt} = require('../models/Receipt');
 
 exports.receipt_create_post = (req, res) =>{
+    console.log(req.body)
     let receipt = new Receipt(req.body)
     receipt.save()
     .then(values =>{
@@ -12,7 +13,7 @@ exports.receipt_create_post = (req, res) =>{
 }
 
 exports.receipt_index_get = (req, res) =>{
-    Receipt.find({user:req.query.user})
+    Receipt.find({user:req.query.user}).populate('class')
     .then(myReceiptments =>{
         res.json(myReceiptments);
     })
