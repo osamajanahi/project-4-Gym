@@ -59,9 +59,8 @@ exports.category_edits_post = (req, res) =>{
 }
 
 exports.category_edit_post = async (req, res) =>{
-    const id = req.body.id;
     const updatedData = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     if (req.file) {
         const image = `public/images/${req.file.filename}`;
         try {
@@ -77,10 +76,10 @@ exports.category_edit_post = async (req, res) =>{
             return res.status(500).send("Error uploading image. Please try again later.");
         }
     }
-    
-    
-    Category.findByIdAndUpdate(id, req.body, { new: true })
+    console.log(req.body)
+    Category.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .then(updatedCat =>{
+        console.log(updatedCat)
         res.json(updatedCat);
     })
     .catch(err =>{
@@ -88,11 +87,8 @@ exports.category_edit_post = async (req, res) =>{
     })
 }
 
-
-
-
 exports.category_detail_get = (req, res) => {
-    Category.findById(req.query.id)
+    Category.findById(req.query.id).populate('class')
     .then((category) => {
         res.json({ category })
     })

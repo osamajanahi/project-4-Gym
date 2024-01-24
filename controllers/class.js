@@ -5,7 +5,7 @@ const fs = require("fs");
 const uploadCloudinary = require('../config/cloudinaryConfig');
 
 exports.class_add_post = async (req, res) =>{
-    console.log(req)
+    console.log(req.body)
     let newClass = new Class(req.body);
     let images;
     // console.log(req)
@@ -128,13 +128,13 @@ exports.class_edit_post = async (req, res) =>{
         } 
 
 
-    Class.findByIdAndUpdate(req.body._id, req.body, { new: true })
-    .then(updateClass =>{
-        res.json(updateClass);
-    })
-    .catch(err =>{
-        console.log(err);
-    })
+    // Class.findByIdAndUpdate(req.body._id, req.body, { new: true })
+    // .then(updateClass =>{
+    //     res.json(updateClass);
+    // })
+    // .catch(err =>{
+    //     console.log(err);
+    // })
 }
 
 exports.class_delete_post = (req, res) =>{

@@ -13,7 +13,7 @@ const classSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    Category: {
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
     },

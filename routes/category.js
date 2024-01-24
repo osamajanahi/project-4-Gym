@@ -9,12 +9,12 @@ router.use(express.json());
 
 const categoryCtrl = require('../controllers/category');
 
-router.post('/add', upload.single('image') ,categoryCtrl.category_create_post);
+router.post('/add', upload.single('image'), categoryCtrl.category_create_post);
 router.get('/', categoryCtrl.category_index_get);
 router.get('/edit', categoryCtrl.category_edit_get);
-router.post('/edit', categoryCtrl.category_edit_post);
+router.post('/edit', upload.single('image'), categoryCtrl.category_edit_post);
 router.post('/edits', categoryCtrl.category_edits_post);
-router.get('/deltail', categoryCtrl.category_detail_get);
+router.get('/detail', categoryCtrl.category_detail_get);
 
 
 module.exports = router;
