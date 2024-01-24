@@ -5,6 +5,7 @@ const salt = 10;
 const jwt = require("jsonwebtoken");
 
 exports.auth_signup_post = (req, res) => {
+req.body.type = "user";
 
 
     let user = new User(req.body);
@@ -29,11 +30,11 @@ exports.auth_signup_post = (req, res) => {
 
 // Signin POST API
 exports.auth_signin_post = async (req, res) => {
-    let { emailAddress, password } = req.body;
-    console.log(emailAddress);
+    let { email, password } = req.body;
+    console.log(email);
   
     try{
-      let user = await User.findOne({emailAddress});
+      let user = await User.findOne({email});
       console.log(user);
   
       if(!user)

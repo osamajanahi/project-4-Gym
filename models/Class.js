@@ -9,6 +9,10 @@ const classSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    days: {
+        type: String,
+        required: true
+    },
     price: {
         type: Number,
         required: true
